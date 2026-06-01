@@ -1,0 +1,2006 @@
+{
+  "version": "2.0.0",
+  "summary": {
+    "title": "Flipkart E-commerce Platform - STRIDE Threat Model",
+    "owner": "Student",
+    "description": "Microservices-based e-commerce platform modeled on Flipkart architecture: API Gateway (Kong/Zuul), User/Auth Service with OTP login, Product/Search Service with Elasticsearch, Cart/Checkout, Order Management, Payment Service (Razorpay/PayU), Seller Portal, Notification Service, and Ekart Logistics integration.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "DFD Level 0 - Flipkart Context Diagram",
+        "diagramType": "STRIDE",
+        "placeholder": "High-level context diagram showing external entities interacting with the Flipkart platform.",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.0.0",
+        "cells": [
+          {
+            "shape": "trust-boundary-box",
+            "id": "52e44329-1d6b-4c4c-a05a-e321af526e9d",
+            "zIndex": -1,
+            "type": "tm.BoundaryBox",
+            "position": {
+              "x": 380,
+              "y": 180
+            },
+            "size": {
+              "width": 540,
+              "height": 500
+            },
+            "attrs": {},
+            "data": {
+              "name": "Flipkart Internal Network",
+              "description": "",
+              "isTrustBoundary": true
+            }
+          },
+          {
+            "position": {
+              "x": 40,
+              "y": 100
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "shape": "actor",
+            "id": "l0-customer",
+            "zIndex": 1,
+            "type": "tm.Actor",
+            "data": {
+              "name": "E1 Customer (Mobile/Web)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 40,
+              "y": 320
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "shape": "actor",
+            "id": "l0-seller",
+            "zIndex": 2,
+            "type": "tm.Actor",
+            "data": {
+              "name": "E2 Seller",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 40,
+              "y": 540
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "shape": "actor",
+            "id": "l0-admin",
+            "zIndex": 3,
+            "type": "tm.Actor",
+            "data": {
+              "name": "E3 Flipkart Admin",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 1060,
+              "y": 100
+            },
+            "size": {
+              "width": 180,
+              "height": 80
+            },
+            "shape": "actor",
+            "id": "l0-payment",
+            "zIndex": 4,
+            "type": "tm.Actor",
+            "data": {
+              "name": "E4 Payment Gateway (Razorpay/PayU)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 1060,
+              "y": 320
+            },
+            "size": {
+              "width": 180,
+              "height": 80
+            },
+            "shape": "actor",
+            "id": "l0-logistics",
+            "zIndex": 5,
+            "type": "tm.Actor",
+            "data": {
+              "name": "E5 Logistics (Ekart)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 1060,
+              "y": 540
+            },
+            "size": {
+              "width": 180,
+              "height": 80
+            },
+            "shape": "actor",
+            "id": "l0-sms",
+            "zIndex": 6,
+            "type": "tm.Actor",
+            "data": {
+              "name": "E6 SMS/Email Provider",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 450,
+              "y": 250
+            },
+            "size": {
+              "width": 400,
+              "height": 180
+            },
+            "shape": "process",
+            "id": "l0-flipkart-platform",
+            "zIndex": 7,
+            "type": "tm.Process",
+            "data": {
+              "name": "Flipkart Platform (Microservices)",
+              "description": "Central e-commerce platform comprising API Gateway, Auth, Product, Cart, Order, Payment, Seller, and Notification microservices.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "privilegeLevel": ""
+            }
+          },
+          {
+            "position": {
+              "x": 500,
+              "y": 530
+            },
+            "size": {
+              "width": 300,
+              "height": 80
+            },
+            "shape": "store",
+            "id": "l0-backend-db",
+            "zIndex": 8,
+            "type": "tm.Store",
+            "data": {
+              "name": "Backend Databases (MySQL/Redis/ES)",
+              "description": "Users DB, Product Catalog, Orders DB, Payment Ledger, Redis Session Cache, Audit Logs.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "isALog": false,
+              "storesCredentials": true,
+              "isEncrypted": false,
+              "isSigned": false
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasNoOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasNoOpenThreats isInScope"
+              }
+            },
+            "id": "7bcb40d0-6020-4462-b7c5-b2a79f84ec9b",
+            "zIndex": 9,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "l0-customer"
+            },
+            "target": {
+              "cell": "l0-flipkart-platform"
+            },
+            "vertices": [],
+            "data": {
+              "name": "F1 HTTPS (Customer Requests)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasNoOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasNoOpenThreats isInScope"
+              }
+            },
+            "id": "c20f56ac-793d-4e6c-bfba-ecbb39245ee5",
+            "zIndex": 10,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "l0-seller"
+            },
+            "target": {
+              "cell": "l0-flipkart-platform"
+            },
+            "vertices": [],
+            "data": {
+              "name": "F2 HTTPS (Seller Portal Requests)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasNoOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasNoOpenThreats isInScope"
+              }
+            },
+            "id": "4e2da649-f921-442b-ba06-57d0abac305b",
+            "zIndex": 11,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "l0-admin"
+            },
+            "target": {
+              "cell": "l0-flipkart-platform"
+            },
+            "vertices": [],
+            "data": {
+              "name": "F3 HTTPS/VPN (Admin Requests)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasNoOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasNoOpenThreats isInScope"
+              }
+            },
+            "id": "4bde7f7e-7370-408c-a4cf-f9b2f5f16083",
+            "zIndex": 12,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "l0-flipkart-platform"
+            },
+            "target": {
+              "cell": "l0-payment"
+            },
+            "vertices": [],
+            "data": {
+              "name": "F4 Payment API (Razorpay/PayU)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasNoOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasNoOpenThreats isInScope"
+              }
+            },
+            "id": "4c403afe-209a-4d18-beaa-5a9b2d8c7cb2",
+            "zIndex": 13,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "l0-payment"
+            },
+            "target": {
+              "cell": "l0-flipkart-platform"
+            },
+            "vertices": [],
+            "data": {
+              "name": "F4 Webhook (Payment Callback)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasNoOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasNoOpenThreats isInScope"
+              }
+            },
+            "id": "2eb919cd-218c-4fa2-b9bc-0124a5af6c74",
+            "zIndex": 14,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "l0-flipkart-platform"
+            },
+            "target": {
+              "cell": "l0-logistics"
+            },
+            "vertices": [],
+            "data": {
+              "name": "F5 Shipping API (Dispatch/Tracking)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasNoOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasNoOpenThreats isInScope"
+              }
+            },
+            "id": "b1934aed-8f30-4fd2-80fe-623815f85f21",
+            "zIndex": 15,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "l0-flipkart-platform"
+            },
+            "target": {
+              "cell": "l0-sms"
+            },
+            "vertices": [],
+            "data": {
+              "name": "F6 SMS/Email API (OTP/Alerts)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasNoOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasNoOpenThreats isInScope"
+              }
+            },
+            "id": "eab8b1fd-65e0-4056-b67c-e27e54b4bf3a",
+            "zIndex": 16,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "l0-flipkart-platform"
+            },
+            "target": {
+              "cell": "l0-backend-db"
+            },
+            "vertices": [],
+            "data": {
+              "name": "F7 SQL/Redis/ES (Internal Data)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            }
+          }
+        ],
+        "size": {
+          "width": 1400,
+          "height": 750
+        }
+      },
+      {
+        "id": 1,
+        "title": "Flipkart E-commerce Platform - DFD Level 1",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.0.0",
+        "cells": [
+          {
+            "shape": "trust-boundary-box",
+            "id": "aa0b0011-b001-4a01-aa01-bb0000000011",
+            "zIndex": -1,
+            "type": "tm.BoundaryBox",
+            "position": {
+              "x": 200,
+              "y": 20
+            },
+            "size": {
+              "width": 630,
+              "height": 580
+            },
+            "attrs": {},
+            "data": {
+              "name": "Flipkart Microservices Network",
+              "description": "",
+              "isTrustBoundary": true
+            }
+          },
+          {
+            "shape": "trust-boundary-box",
+            "id": "aa0b0012-b002-4a02-aa02-bb0000000012",
+            "zIndex": -1,
+            "type": "tm.BoundaryBox",
+            "position": {
+              "x": 620,
+              "y": 30
+            },
+            "size": {
+              "width": 200,
+              "height": 150
+            },
+            "attrs": {},
+            "data": {
+              "name": "PCI DSS Zone",
+              "description": "",
+              "isTrustBoundary": true
+            }
+          },
+          {
+            "position": {
+              "x": 30,
+              "y": 50
+            },
+            "size": {
+              "width": 150,
+              "height": 80
+            },
+            "shape": "actor",
+            "id": "e1000001-1111-4e01-a001-e10000000001",
+            "zIndex": 1,
+            "type": "tm.Actor",
+            "data": {
+              "name": "E1 Customer (Mobile/Web)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 30,
+              "y": 250
+            },
+            "size": {
+              "width": 150,
+              "height": 80
+            },
+            "shape": "actor",
+            "id": "e2000002-2222-4e02-a002-e20000000002",
+            "zIndex": 2,
+            "type": "tm.Actor",
+            "data": {
+              "name": "E2 Seller",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 30,
+              "y": 450
+            },
+            "size": {
+              "width": 150,
+              "height": 80
+            },
+            "shape": "actor",
+            "id": "e3000003-3333-4e03-a003-e30000000003",
+            "zIndex": 3,
+            "type": "tm.Actor",
+            "data": {
+              "name": "E3 Flipkart Admin",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 850,
+              "y": 50
+            },
+            "size": {
+              "width": 180,
+              "height": 80
+            },
+            "shape": "actor",
+            "id": "e4000004-4444-4e04-a004-e40000000004",
+            "zIndex": 4,
+            "type": "tm.Actor",
+            "data": {
+              "name": "E4 Payment Gateway (Razorpay/PayU)",
+              "description": "",
+              "outOfScope": true,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 850,
+              "y": 250
+            },
+            "size": {
+              "width": 180,
+              "height": 80
+            },
+            "shape": "actor",
+            "id": "e5000005-5555-4e05-a005-e50000000005",
+            "zIndex": 5,
+            "type": "tm.Actor",
+            "data": {
+              "name": "E5 Logistics (Ekart)",
+              "description": "",
+              "outOfScope": true,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 850,
+              "y": 450
+            },
+            "size": {
+              "width": 180,
+              "height": 80
+            },
+            "shape": "actor",
+            "id": "e6000006-6666-4e06-a006-e60000000006",
+            "zIndex": 6,
+            "type": "tm.Actor",
+            "data": {
+              "name": "E6 SMS/Email Provider",
+              "description": "",
+              "outOfScope": true,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 220,
+              "y": 180
+            },
+            "size": {
+              "width": 130,
+              "height": 80
+            },
+            "shape": "process",
+            "id": "b1010001-0001-4b01-ab01-010000000001",
+            "zIndex": 7,
+            "type": "tm.Process",
+            "data": {
+              "name": "P1 API Gateway (Kong/Zuul)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "privilegeLevel": ""
+            }
+          },
+          {
+            "position": {
+              "x": 220,
+              "y": 330
+            },
+            "size": {
+              "width": 130,
+              "height": 80
+            },
+            "shape": "process",
+            "id": "b2020002-0002-4b02-ab02-020000000002",
+            "zIndex": 8,
+            "type": "tm.Process",
+            "data": {
+              "name": "P2 User and Auth Service",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "privilegeLevel": ""
+            }
+          },
+          {
+            "position": {
+              "x": 220,
+              "y": 480
+            },
+            "size": {
+              "width": 130,
+              "height": 80
+            },
+            "shape": "process",
+            "id": "b3030003-0003-4b03-ab03-030000000003",
+            "zIndex": 9,
+            "type": "tm.Process",
+            "data": {
+              "name": "P3 Product and Search Service",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "privilegeLevel": ""
+            }
+          },
+          {
+            "position": {
+              "x": 380,
+              "y": 480
+            },
+            "size": {
+              "width": 130,
+              "height": 80
+            },
+            "shape": "process",
+            "id": "b4040004-0004-4b04-ab04-040000000004",
+            "zIndex": 10,
+            "type": "tm.Process",
+            "data": {
+              "name": "P4 Seller Portal Service",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "privilegeLevel": ""
+            }
+          },
+          {
+            "position": {
+              "x": 380,
+              "y": 180
+            },
+            "size": {
+              "width": 130,
+              "height": 80
+            },
+            "shape": "process",
+            "id": "b5050005-0005-4b05-ab05-050000000005",
+            "zIndex": 11,
+            "type": "tm.Process",
+            "data": {
+              "name": "P5 Cart and Checkout Service",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "privilegeLevel": ""
+            }
+          },
+          {
+            "position": {
+              "x": 380,
+              "y": 330
+            },
+            "size": {
+              "width": 130,
+              "height": 80
+            },
+            "shape": "process",
+            "id": "b6060006-0006-4b06-ab06-060000000006",
+            "zIndex": 12,
+            "type": "tm.Process",
+            "data": {
+              "name": "P6 Order Management Service",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "privilegeLevel": ""
+            }
+          },
+          {
+            "position": {
+              "x": 640,
+              "y": 50
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "shape": "process",
+            "id": "b7070007-0007-4b07-ab07-070000000007",
+            "zIndex": 13,
+            "type": "tm.Process",
+            "data": {
+              "name": "P7 Payment Service",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "privilegeLevel": ""
+            }
+          },
+          {
+            "position": {
+              "x": 540,
+              "y": 450
+            },
+            "size": {
+              "width": 130,
+              "height": 80
+            },
+            "shape": "process",
+            "id": "b8080008-0008-4b08-ab08-080000000008",
+            "zIndex": 14,
+            "type": "tm.Process",
+            "data": {
+              "name": "P8 Notification Service",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "privilegeLevel": ""
+            }
+          },
+          {
+            "position": {
+              "x": 540,
+              "y": 180
+            },
+            "size": {
+              "width": 150,
+              "height": 60
+            },
+            "shape": "store",
+            "id": "c1d10001-d001-4c01-ac01-d10000000001",
+            "zIndex": 15,
+            "type": "tm.Store",
+            "data": {
+              "name": "D1 Users DB (MySQL)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "isALog": false,
+              "storesCredentials": true,
+              "isEncrypted": false,
+              "isSigned": false
+            }
+          },
+          {
+            "position": {
+              "x": 540,
+              "y": 260
+            },
+            "size": {
+              "width": 150,
+              "height": 60
+            },
+            "shape": "store",
+            "id": "c2d20002-d002-4c02-ac02-d20000000002",
+            "zIndex": 16,
+            "type": "tm.Store",
+            "data": {
+              "name": "D2 Product Catalog (MySQL+ES)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "isALog": false,
+              "storesCredentials": false,
+              "isEncrypted": false,
+              "isSigned": false
+            }
+          },
+          {
+            "position": {
+              "x": 540,
+              "y": 340
+            },
+            "size": {
+              "width": 150,
+              "height": 60
+            },
+            "shape": "store",
+            "id": "c3d30003-d003-4c03-ac03-d30000000003",
+            "zIndex": 17,
+            "type": "tm.Store",
+            "data": {
+              "name": "D3 Orders DB (MySQL)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "isALog": false,
+              "storesCredentials": false,
+              "isEncrypted": false,
+              "isSigned": false
+            }
+          },
+          {
+            "position": {
+              "x": 640,
+              "y": 150
+            },
+            "size": {
+              "width": 150,
+              "height": 60
+            },
+            "shape": "store",
+            "id": "c4d40004-d004-4c04-ac04-d40000000004",
+            "zIndex": 18,
+            "type": "tm.Store",
+            "data": {
+              "name": "D4 Payment Ledger (MySQL)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "isALog": false,
+              "storesCredentials": false,
+              "isEncrypted": true,
+              "isSigned": false
+            }
+          },
+          {
+            "position": {
+              "x": 380,
+              "y": 560
+            },
+            "size": {
+              "width": 130,
+              "height": 50
+            },
+            "shape": "store",
+            "id": "c5d50005-d005-4c05-ac05-d50000000005",
+            "zIndex": 19,
+            "type": "tm.Store",
+            "data": {
+              "name": "D5 Redis Session Cache",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "isALog": false,
+              "storesCredentials": false,
+              "isEncrypted": false,
+              "isSigned": false
+            }
+          },
+          {
+            "position": {
+              "x": 540,
+              "y": 540
+            },
+            "size": {
+              "width": 150,
+              "height": 50
+            },
+            "shape": "store",
+            "id": "c6d60006-d006-4c06-ac06-d60000000006",
+            "zIndex": 20,
+            "type": "tm.Store",
+            "data": {
+              "name": "D6 Audit Logs (ELK)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "isALog": true,
+              "storesCredentials": false,
+              "isEncrypted": false,
+              "isSigned": false
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasOpenThreats isInScope"
+              }
+            },
+            "id": "f1000001-0001-4f01-af01-f10000000001",
+            "zIndex": 21,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "e1000001-1111-4e01-a001-e10000000001"
+            },
+            "target": {
+              "cell": "b1010001-0001-4b01-ab01-010000000001"
+            },
+            "vertices": [
+              {
+                "x": 200,
+                "y": 155
+              }
+            ],
+            "data": {
+              "name": "F1 HTTPS (Customer Requests)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "94e3f237-f0c2-4774-8d86-7a59511c1979",
+                  "title": "T01 - API Gateway Request Smuggling",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Attacker crafts ambiguous HTTP requests to bypass Kong/Zuul gateway routing rules and reach internal microservices directly, potentially accessing admin-only endpoints.",
+                  "mitigation": "Likelihood: Medium | Impact: High | Mitigation: Normalize and validate HTTP requests at gateway, disable HTTP/1.0, enforce strict parsing, and run regular smuggling tests.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "1723f1cf-258f-4a7a-a298-798d733860dc",
+                  "title": "T17 - Session Token Leakage from Mobile App",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information Disclosure",
+                  "description": "Flipkart Android/iOS app stores JWT or session token in SharedPreferences/NSUserDefaults without encryption. Malware or rooted device extracts tokens for account takeover.",
+                  "mitigation": "Likelihood: Medium | Impact: High | Mitigation: Store tokens in Android Keystore / iOS Keychain, use certificate pinning, detect rooted/jailbroken devices, and bind tokens to device fingerprint.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "b455aede-f125-4594-b2f6-fcae6b6cfd8d",
+                  "title": "T19 - Mobile App API Key Extraction",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "Attacker reverse-engineers Flipkart APK to extract API keys, client secrets, or hardcoded credentials used for internal service authentication.",
+                  "mitigation": "Likelihood: Medium | Impact: Medium | Mitigation: Use OAuth2 device flow instead of embedded secrets, obfuscate APK (ProGuard/R8), rotate API keys frequently, and monitor for anomalous API key usage patterns.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasOpenThreats isInScope"
+              }
+            },
+            "id": "f2000002-0002-4f02-af02-f20000000002",
+            "zIndex": 22,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "e2000002-2222-4e02-a002-e20000000002"
+            },
+            "target": {
+              "cell": "b1010001-0001-4b01-ab01-010000000001"
+            },
+            "vertices": [
+              {
+                "x": 200,
+                "y": 265
+              }
+            ],
+            "data": {
+              "name": "F2 HTTPS (Seller Portal Requests)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "217c9c17-d13b-43ec-8797-9ce9ece6d824",
+                  "title": "T06 - Fake Seller Registration and Listing Fraud",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Attacker registers as a seller with stolen GST/PAN details, lists counterfeit or non-existent products at attractive prices, collects payments, and never ships goods.",
+                  "mitigation": "Likelihood: Medium | Impact: High | Mitigation: KYC verification (video, bank account, GST validation), seller escrow with delayed payouts, and automated fraud scoring.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasOpenThreats isInScope"
+              }
+            },
+            "id": "f3000003-0003-4f03-af03-f30000000003",
+            "zIndex": 23,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "e3000003-3333-4e03-a003-e30000000003"
+            },
+            "target": {
+              "cell": "b1010001-0001-4b01-ab01-010000000001"
+            },
+            "vertices": [
+              {
+                "x": 200,
+                "y": 370
+              }
+            ],
+            "data": {
+              "name": "F3 HTTPS/VPN (Admin Requests)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "fb190abb-9619-4e0e-a04f-ae96d04a9fe5",
+                  "title": "T13 - Admin Account Phishing and Session Hijack",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Attacker sends targeted phishing email to Flipkart admin, stealing credentials or admin session cookie to access seller payout controls, catalog management, and user data.",
+                  "mitigation": "Likelihood: Medium | Impact: High | Mitigation: Hardware security keys (FIDO2) for admin login, admin-only VPN, session binding to IP/device, privileged access management (PAM), and just-in-time access elevation.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasOpenThreats isInScope"
+              }
+            },
+            "id": "f1100010-0010-4f10-af10-f11000000010",
+            "zIndex": 24,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "b1010001-0001-4b01-ab01-010000000001"
+            },
+            "target": {
+              "cell": "b5050005-0005-4b05-ab05-050000000005"
+            },
+            "vertices": [
+              {
+                "x": 365,
+                "y": 220
+              }
+            ],
+            "data": {
+              "name": "Route: Cart/Checkout API",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "01d23f8c-b83a-4e6a-a31f-936b58b3800c",
+                  "title": "T04 - Price/Coupon Tampering During Checkout",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Attacker intercepts Flipkart checkout API calls and modifies cart total, discount amount, or coupon code in the request body to pay less than the actual price.",
+                  "mitigation": "Likelihood: Medium | Impact: High | Mitigation: Server-side price recalculation from catalog DB, signed cart tokens, coupon validation on backend, and re-verify totals before payment.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "9c8a93de-0c07-421b-8a13-085f97ce6c7a",
+                  "title": "T10 - Flash Sale DDoS (Big Billion Days)",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Denial Of Service",
+                  "description": "During Flipkart Big Billion Days sale, attackers or scalper bots flood the cart/checkout APIs with millions of requests to exhaust inventory holds and crash the checkout pipeline.",
+                  "mitigation": "Likelihood: High | Impact: High | Mitigation: CDN-level DDoS protection (Akamai), rate limiting per user/IP, queue-based checkout (virtual waiting room), bot detection via device fingerprinting, and auto-scaling cart microservice.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "853c94de-635b-40f8-a023-4f06d5b4a57b",
+                  "title": "T18 - Cart Bombing / Inventory Hold Abuse",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Attacker adds limited-stock flash sale items to thousands of carts via automated scripts, holding inventory without purchasing to deny legitimate buyers access.",
+                  "mitigation": "Likelihood: Medium | Impact: Medium | Mitigation: Short cart reservation timeouts (5 min for flash sales), per-user quantity limits, bot detection (CAPTCHA on add-to-cart during sales), and inventory release on timeout.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasOpenThreats isInScope"
+              }
+            },
+            "id": "f1100011-0011-4f11-af11-f11000000011",
+            "zIndex": 25,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "b1010001-0001-4b01-ab01-010000000001"
+            },
+            "target": {
+              "cell": "b2020002-0002-4b02-ab02-020000000002"
+            },
+            "vertices": [
+              {
+                "x": 285,
+                "y": 295
+              }
+            ],
+            "data": {
+              "name": "Route: Auth/Login API",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "e84882e6-2dd3-4ea3-97b9-5dabb3bd1b19",
+                  "title": "T02 - OTP Brute-Force on Flipkart Login",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Flipkart uses OTP-based mobile login. Attacker automates rapid OTP guesses (4-6 digit) against /api/auth/verify-otp to take over accounts without knowing the password.",
+                  "mitigation": "Likelihood: High | Impact: High | Mitigation: Rate-limit OTP attempts per phone number, enforce exponential backoff, use CAPTCHA after failed attempts, and expire OTPs within 60 seconds.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "09a57055-0b88-47b4-af98-cecb8ab992e7",
+                  "title": "T03 - Credential Stuffing on Email/Password Login",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Attacker uses leaked credential databases to automate login attempts against Flipkart accounts that still use email/password.",
+                  "mitigation": "Likelihood: High | Impact: High | Mitigation: Breached-password detection, adaptive MFA, device fingerprinting, and account lockout after repeated failures.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasOpenThreats isInScope"
+              }
+            },
+            "id": "f1100012-0012-4f12-af12-f11000000012",
+            "zIndex": 26,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "b1010001-0001-4b01-ab01-010000000001"
+            },
+            "target": {
+              "cell": "b3030003-0003-4b03-ab03-030000000003"
+            },
+            "vertices": [
+              {
+                "x": 260,
+                "y": 370
+              }
+            ],
+            "data": {
+              "name": "Route: Product/Search API",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "9ca41753-9ac8-4f71-b16a-15274336a62b",
+                  "title": "T11 - Stored XSS in Product Reviews and Q&A",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Attacker posts a product review or Q&A answer containing JavaScript that executes in other customers' browsers, stealing session tokens or redirecting to phishing pages.",
+                  "mitigation": "Likelihood: Medium | Impact: Medium | Mitigation: Server-side HTML sanitization (OWASP Java HTML Sanitizer), output encoding, strict CSP headers, and review moderation pipeline.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasOpenThreats isInScope"
+              }
+            },
+            "id": "f1100013-0013-4f13-af13-f11000000013",
+            "zIndex": 27,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "b1010001-0001-4b01-ab01-010000000001"
+            },
+            "target": {
+              "cell": "b4040004-0004-4b04-ab04-040000000004"
+            },
+            "vertices": [
+              {
+                "x": 350,
+                "y": 390
+              }
+            ],
+            "data": {
+              "name": "Route: Seller Portal API",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "f6081448-c9a6-4596-85a4-163a7b9bbd68",
+                  "title": "T14 - Seller Inventory and Price Manipulation",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Compromised seller account or API key is used to bulk-update product prices to 1 INR or inflate stock counts to win Buy Box placement unfairly.",
+                  "mitigation": "Likelihood: Medium | Impact: Medium | Mitigation: Anomaly detection on price/stock changes (>50% deviation triggers review), seller API rate limits, and mandatory 2FA for bulk updates.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasNoOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasNoOpenThreats isInScope"
+              }
+            },
+            "id": "f1100014-0014-4f14-af14-f11000000014",
+            "zIndex": 28,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "b5050005-0005-4b05-ab05-050000000005"
+            },
+            "target": {
+              "cell": "b6060006-0006-4b06-ab06-060000000006"
+            },
+            "vertices": [
+              {
+                "x": 445,
+                "y": 295
+              }
+            ],
+            "data": {
+              "name": "F8 Place Order (gRPC/REST)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasOpenThreats isInScope"
+              }
+            },
+            "id": "f1100015-0015-4f15-af15-f11000000015",
+            "zIndex": 29,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "b6060006-0006-4b06-ab06-060000000006"
+            },
+            "target": {
+              "cell": "b7070007-0007-4b07-ab07-070000000007"
+            },
+            "vertices": [
+              {
+                "x": 575,
+                "y": 225
+              }
+            ],
+            "data": {
+              "name": "F9 Payment Request",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "420238d3-9d7b-4e05-8721-04421cc64a69",
+                  "title": "T20 - Refund Fraud with Insufficient Evidence",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Customer or seller disputes a transaction. Without signed receipts, delivery proof, or immutable payment logs, Flipkart cannot prove the transaction occurred, leading to chargebacks.",
+                  "mitigation": "Likelihood: Medium | Impact: Medium | Mitigation: Store signed payment receipts, maintain immutable transaction ledger, integrate Razorpay dispute evidence API, and implement automated chargeback response.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasNoOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasNoOpenThreats isInScope"
+              }
+            },
+            "id": "f4000004-0004-4f04-af04-f40000000004",
+            "zIndex": 30,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "b7070007-0007-4b07-ab07-070000000007"
+            },
+            "target": {
+              "cell": "e4000004-4444-4e04-a004-e40000000004"
+            },
+            "vertices": [
+              {
+                "x": 825,
+                "y": 90
+              }
+            ],
+            "data": {
+              "name": "F4 Payment API (Razorpay)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasOpenThreats isInScope"
+              }
+            },
+            "id": "f4000005-0005-4f05-af05-f40000000005",
+            "zIndex": 31,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "e4000004-4444-4e04-a004-e40000000004"
+            },
+            "target": {
+              "cell": "b7070007-0007-4b07-ab07-070000000007"
+            },
+            "vertices": [
+              {
+                "x": 825,
+                "y": 110
+              }
+            ],
+            "data": {
+              "name": "F4 Webhook (Payment Callback)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "d3858d18-0b4f-4b9b-8878-ecac9d073848",
+                  "title": "T07 - Razorpay/PayU Webhook Spoofing",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Attacker forges a payment success webhook to /api/payment/callback causing Flipkart to mark an unpaid order as paid and ship the product.",
+                  "mitigation": "Likelihood: Medium | Impact: High | Mitigation: Verify webhook HMAC signatures using shared secret, validate payment amount matches order total, and perform server-to-server verification with Razorpay Orders API.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasOpenThreats isInScope"
+              }
+            },
+            "id": "f5000006-0006-4f06-af06-f50000000006",
+            "zIndex": 32,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "b6060006-0006-4b06-ab06-060000000006"
+            },
+            "target": {
+              "cell": "e5000005-5555-4e05-a005-e50000000005"
+            },
+            "vertices": [
+              {
+                "x": 680,
+                "y": 330
+              }
+            ],
+            "data": {
+              "name": "F5 Shipping API (Dispatch/Tracking)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "7ecc280f-b773-448d-9ecb-e9386c5ae1a5",
+                  "title": "T15 - Delivery Dispute: Customer Denies Receipt",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Customer claims product was not delivered despite successful handoff. Without signed proof of delivery, Flipkart must refund and absorb the loss.",
+                  "mitigation": "Likelihood: Medium | Impact: Medium | Mitigation: OTP-verified delivery, photo proof of delivery via Ekart app, GPS-stamped delivery events, and centralized dispute audit trail.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasNoOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasNoOpenThreats isInScope"
+              }
+            },
+            "id": "f1100016-0016-4f16-af16-f11000000016",
+            "zIndex": 33,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "b6060006-0006-4b06-ab06-060000000006"
+            },
+            "target": {
+              "cell": "b8080008-0008-4b08-ab08-080000000008"
+            },
+            "vertices": [
+              {
+                "x": 492,
+                "y": 445
+              }
+            ],
+            "data": {
+              "name": "Kafka Event (Order Status)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasNoOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasNoOpenThreats isInScope"
+              }
+            },
+            "id": "f6000007-0007-4f07-af07-f60000000007",
+            "zIndex": 34,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "b8080008-0008-4b08-ab08-080000000008"
+            },
+            "target": {
+              "cell": "e6000006-6666-4e06-a006-e60000000006"
+            },
+            "vertices": [
+              {
+                "x": 760,
+                "y": 490
+              }
+            ],
+            "data": {
+              "name": "F6 SMS/Email API (OTP/Alerts)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasOpenThreats isInScope"
+              }
+            },
+            "id": "fba00001-0001-4f01-af01-fb0000000001",
+            "zIndex": 35,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "b2020002-0002-4b02-ab02-020000000002"
+            },
+            "target": {
+              "cell": "c1d10001-d001-4c01-ac01-d10000000001"
+            },
+            "vertices": [
+              {
+                "x": 445,
+                "y": 290
+              }
+            ],
+            "data": {
+              "name": "SQL (User CRUD, Password Hash)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "f6707444-e24c-41c6-8745-ac357edb43ff",
+                  "title": "T08 - Mass User PII Exposure (Phone, Aadhaar, Address)",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information Disclosure",
+                  "description": "Database breach or misconfigured backup exposes 400M+ user records including phone numbers, delivery addresses, and saved payment methods to attackers.",
+                  "mitigation": "Likelihood: Medium | Impact: High | Mitigation: Encrypt sensitive columns (AES-256), use envelope encryption with AWS KMS, restrict DB access via IAM, encrypt backups, and implement data masking for non-production environments.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasOpenThreats isInScope"
+              }
+            },
+            "id": "fbb00002-0002-4f02-af02-fb0000000002",
+            "zIndex": 36,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "b3030003-0003-4b03-ab03-030000000003"
+            },
+            "target": {
+              "cell": "c2d20002-d002-4c02-ac02-d20000000002"
+            },
+            "vertices": [
+              {
+                "x": 445,
+                "y": 405
+              }
+            ],
+            "data": {
+              "name": "SQL/ES (Product Search)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "c6ba3191-8f9a-4eaa-ad22-7bef207e4a31",
+                  "title": "T09 - SQL Injection on Product Search/Filter",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Attacker injects SQL via search query, price range filter, or sort parameter on /api/products/search to extract product catalog data, seller information, or pricing strategies.",
+                  "mitigation": "Likelihood: Medium | Impact: High | Mitigation: Use parameterized queries for MySQL, validate Elasticsearch query DSL, sanitize all filter inputs, and use ORM (Hibernate) consistently.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasOpenThreats isInScope"
+              }
+            },
+            "id": "fbc00003-0003-4f03-af03-fb0000000003",
+            "zIndex": 37,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "b6060006-0006-4b06-ab06-060000000006"
+            },
+            "target": {
+              "cell": "c3d30003-d003-4c03-ac03-d30000000003"
+            },
+            "vertices": [
+              {
+                "x": 525,
+                "y": 370
+              }
+            ],
+            "data": {
+              "name": "SQL (Order CRUD)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "9f7f34c4-7703-41a9-b9b0-dce1e0c76d71",
+                  "title": "T05 - IDOR on Order Details and Address Endpoints",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation Of Privilege",
+                  "description": "Authenticated customer changes orderId or addressId in /api/orders/{id} or /api/address/{id} to view or modify another user's order details, delivery address, or phone number.",
+                  "mitigation": "Likelihood: High | Impact: High | Mitigation: Enforce object-level authorization: verify that the requesting user owns the resource on every API call. Use UUIDs instead of sequential IDs.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasOpenThreats isInScope"
+              }
+            },
+            "id": "fbd00004-0004-4f04-af04-fb0000000004",
+            "zIndex": 38,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "b7070007-0007-4b07-ab07-070000000007"
+            },
+            "target": {
+              "cell": "c4d40004-d004-4c04-ac04-d40000000004"
+            },
+            "vertices": [
+              {
+                "x": 720,
+                "y": 140
+              }
+            ],
+            "data": {
+              "name": "SQL (Payment Records)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "b81281a7-6370-4f2e-a993-f6d9f87e48c8",
+                  "title": "T12 - Payment Card Data Exposure (PCI DSS Violation)",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information Disclosure",
+                  "description": "Saved card details (CVV, full PAN) stored in plaintext in payment ledger or application logs, leading to mass card fraud if breached.",
+                  "mitigation": "Likelihood: Low | Impact: High | Mitigation: Tokenize card data via Razorpay vault, never store CVV, truncate PAN to last 4 digits, achieve PCI DSS Level 1 compliance, and scan logs for accidental card data leakage.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasNoOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasNoOpenThreats isInScope"
+              }
+            },
+            "id": "fbe00005-0005-4f05-af05-fb0000000005",
+            "zIndex": 39,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "b2020002-0002-4b02-ab02-020000000002"
+            },
+            "target": {
+              "cell": "c5d50005-d005-4c05-ac05-d50000000005"
+            },
+            "vertices": [
+              {
+                "x": 365,
+                "y": 480
+              }
+            ],
+            "data": {
+              "name": "Redis (JWT Session Store)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              ".marker-target": {
+                "class": "marker-target hasOpenThreats isInScope"
+              },
+              ".connection": {
+                "class": "connection hasOpenThreats isInScope"
+              }
+            },
+            "id": "fbf00006-0006-4f06-af06-fb0000000006",
+            "zIndex": 40,
+            "type": "tm.Flow",
+            "source": {
+              "cell": "b6060006-0006-4b06-ab06-060000000006"
+            },
+            "target": {
+              "cell": "c6d60006-d006-4c06-ac06-d60000000006"
+            },
+            "vertices": [
+              {
+                "x": 510,
+                "y": 485
+              }
+            ],
+            "data": {
+              "name": "Logstash (Audit Events)",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "d5651ee8-87e7-4d26-b323-030b925a3ce8",
+                  "title": "T16 - Audit Log Tampering or Deletion",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Insider or attacker with DB access deletes or modifies audit logs to cover tracks after unauthorized data access or fraudulent refund processing.",
+                  "mitigation": "Likelihood: Low | Impact: Medium | Mitigation: Write-once append-only log storage, ship logs to centralized SIEM (Splunk/ELK) in real-time, cryptographic log integrity (hash chains), and separate log-admin role.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            }
+          }
+        ],
+        "size": {
+          "width": 2000,
+          "height": 1200
+        }
+      }
+    ]
+  }
+}

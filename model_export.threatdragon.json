@@ -1,0 +1,31 @@
+{
+  "version": "2.0.0",
+  "summary": {
+    "title": "Flipkart E-commerce Platform - STRIDE Threat Model",
+    "owner": "Student",
+    "description": "Microservices-based e-commerce platform modeled on Flipkart's architecture: API gateway, user/auth service with OTP login, product catalog with Elasticsearch, cart/checkout, order management, payment service (Razorpay/PayU), seller marketplace, Ekart logistics integration, and notification service."
+  },
+  "detail": {
+    "diagrams": [
+      {
+        "title": "DFD Level 0 - Flipkart Context Diagram",
+        "diagramType": "DFD",
+        "cells": [],
+        "size": {
+          "width": 1600,
+          "height": 1000
+        }
+      },
+      {
+        "title": "DFD Level 1 - Flipkart Internal Services",
+        "diagramType": "DFD",
+        "cells": [],
+        "size": {
+          "width": 1800,
+          "height": 1200
+        }
+      }
+    ],
+    "threats": []
+  }
+}

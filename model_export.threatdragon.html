@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OWASP Threat Dragon Export - Flipkart E-commerce Platform STRIDE Threat Model</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; color: #111; }
+    h1, h2 { margin: 0 0 12px 0; }
+    h2 { margin-top: 24px; }
+    .note { color: #444; font-size: 14px; }
+    .diagram { max-width: 100%; height: auto; border: 1px solid #ccc; }
+    .list { margin: 0 0 12px 18px; }
+    a { color: #0b57d0; }
+  </style>
+</head>
+<body>
+  <h1>OWASP Threat Dragon Export - Flipkart Platform</h1>
+  <div class="note">
+    Microservices-based e-commerce platform modeled on Flipkart's architecture:
+    API Gateway (Kong/Zuul), User &amp; Auth Service (OTP login), Product &amp; Search
+    (MySQL + Elasticsearch), Cart &amp; Checkout, Order Management, Payment Service
+    (Razorpay/PayU in PCI zone), Seller Marketplace, Ekart Logistics, and
+    Notification Service.
+  </div>
+
+  <h2>Native Model File</h2>
+  <p>
+    The native Threat Dragon project file is
+    <a href="model_export.threatdragon.json">model_export.threatdragon.json</a>.
+  </p>
+
+  <h2>DFD Level 0 - Flipkart Context Diagram</h2>
+  <p>
+    Shows external entities (Customer, Seller, Admin, Payment Gateway, Ekart Logistics,
+    SMS/Email Provider) interacting with the Flipkart Platform and backend databases.
+  </p>
+  <img class="diagram" src="DFD_Level0.png" alt="DFD Level 0 - Flipkart Context Diagram" />
+
+  <h2>DFD Level 1 - Internal Microservices</h2>
+  <p>
+    Decomposes the platform into: P1 API Gateway, P2 User &amp; Auth Service,
+    P3 Product &amp; Search Service, P4 Seller Portal, P5 Cart &amp; Checkout,
+    P6 Order Management, P7 Payment Service (PCI zone), P8 Notification Service.
+    Data stores: D1 Users DB, D2 Product Catalog, D3 Orders DB, D4 Payment Ledger,
+    D5 Redis Session Cache, D6 Audit Logs.
+  </p>
+  <img class="diagram" src="DFD_Level1.png" alt="DFD Level 1 - Flipkart Internal Services" />
+
+  <h2>STRIDE Table</h2>
+  <p>
+    The full STRIDE threat table (20 threats) is provided as
+    <a href="STRIDE_Table.csv">STRIDE_Table.csv</a>.
+  </p>
+
+  <h2>Top 8 Prioritized Risks</h2>
+  <ol class="list">
+    <li><strong>OTP brute-force account takeover</strong> – Automated OTP guessing on Flipkart's mobile login (4-6 digit OTP)</li>
+    <li><strong>IDOR on order/address endpoints</strong> – Sequential IDs allow cross-user data access (DPDP Act violation)</li>
+    <li><strong>Price/coupon tampering at checkout</strong> – Client-side manipulation of cart totals during Big Billion Days</li>
+    <li><strong>Razorpay/PayU webhook spoofing</strong> – Forged payment success callbacks cause unpaid order shipments</li>
+    <li><strong>Flash sale DDoS (Big Billion Days)</strong> – Bot/attacker traffic floods crash checkout at 10x normal load</li>
+    <li><strong>Mass user PII exposure</strong> – 400M+ user records (phone, address, Aadhaar) at risk of breach</li>
+    <li><strong>Fake seller registration and listing fraud</strong> – Fraudulent sellers with stolen KYC collect payments without shipping</li>
+    <li><strong>Admin account compromise</strong> – Phished admin credentials grant access to payouts, catalog, and user data</li>
+  </ol>
+</body>
+</html>
+</html>
